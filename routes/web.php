@@ -8,32 +8,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// =======================
-// Route Admin
-// =======================
+/**
+ * =========================
+ * ADMIN ROUTES
+ * =========================
+ */
 Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', fn () => view('admin.dashboard'))
+            ->name('dashboard');
 
         Route::resource('categories', CategoryController::class);
         Route::resource('products', ProductController::class);
-
     });
-// =======================
-// Route User
-// =======================
-Route::middleware(['auth', 'role:user'])
-    ->prefix('user')
-    ->name('user.')
-    ->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('user.dashboard');
-        })->name('dashboard');
-
-    });
+/**
+ * =========================
+ * USER ROUTES
+ * =========================
+ */
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/user/dashboard', fn () => view('user.dashboard'));
+});
