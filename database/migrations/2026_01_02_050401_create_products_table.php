@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->foreignId('category_id')
                   ->constrained()
                   ->cascadeOnDelete();
-
+            $table->integer('price');
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description');

@@ -13,30 +13,12 @@ class Product extends Model
         'category_id',
         'name',
         'slug',
+        'price',
         'description',
     ];
 
-    /**
-     * Product milik satu Category
-     */
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    /**
-     * Product punya banyak gambar
-     */
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class);
-    }
-
-    /**
-     * Product punya banyak variant
-     */
-    public function variants()
-    {
-        return $this->hasMany(ProductVariant::class);
     }
 }

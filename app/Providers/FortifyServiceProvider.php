@@ -8,23 +8,33 @@ use Laravel\Fortify\Contracts\RegisterResponse;
 use App\Http\Responses\LoginResponse as CustomLoginResponse;
 use App\Http\Responses\RegisterResponse as CustomRegisterResponse;
 use Laravel\Fortify\Fortify;
+use App\Actions\Fortify\CreateNewUser;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
     public function register()
-    {
-        // Custom response setelah LOGIN
-        $this->app->singleton(
-            LoginResponse::class,
-            CustomLoginResponse::class
-        );
+{
+    // Custom response setelah LOGIN
+    $this->app->singleton(
+        LoginResponse::class,
+        CustomLoginResponse::class
+    );
 
-        // Custom response setelah REGISTER
-        $this->app->singleton(
-            RegisterResponse::class,
-            CustomRegisterResponse::class
-        );
-    }
+    // Custom response setelah REGISTER
+    $this->app->singleton(
+        RegisterResponse::class,
+        CustomRegisterResponse::class
+    );
+
+    // 🔴 WAJIB: binding CREATE USER
+    $this->app->singleton(
+        CreatesNewUsers::class,
+        CreateNewUser::class
+    );
+}
+
 
     public function boot()
     {
