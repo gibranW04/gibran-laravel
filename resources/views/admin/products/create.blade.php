@@ -1,29 +1,35 @@
-<h1>Tambah Product</h1>
+@extends('layouts.app')
 
-<form method="POST" action="{{ route('admin.products.store') }}">
-    @csrf
+@section('title', 'Tambah Product')
 
-    <label>Kategori</label><br>
-    <select name="category_id">
-        @foreach($categories as $category)
-            <option value="{{ $category->id }}">
-                {{ $category->name }}
-            </option>
-        @endforeach
-    </select>
-    <br><br>
+@section('content')
+    <h1>Tambah Product</h1>
 
-    <label>Nama</label><br>
-    <input type="text" name="name">
-    <br><br>
+    <form method="POST" action="{{ route('admin.products.store') }}">
+        @csrf
 
-    <label>Harga</label><br>
-    <input type="number" name="price">
-    <br><br>
+        <label>Kategori</label><br>
+        <select name="category_id">
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">
+                    {{ $category->name }}
+                </option>
+            @endforeach
+        </select>
+        <br><br>
 
-    <label>Deskripsi</label><br>
-    <textarea name="description"></textarea>
-    <br><br>
+        <label>Nama</label><br>
+        <input type="text" name="name">
+        <br><br>
 
-    <button type="submit">Simpan</button>
-</form>
+        <label>Harga</label><br>
+        <input type="number" name="price">
+        <br><br>
+
+        <label>Deskripsi</label><br>
+        <textarea name="description"></textarea>
+        <br><br>
+
+        <button type="submit">Simpan</button>
+    </form>
+@endsection

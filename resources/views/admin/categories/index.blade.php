@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Product')
+@section('title', 'Category')
 
 @section('content')
-    <h1>Data Product</h1>
+    <h1>Data Category</h1>
 
-    <a href="{{ route('admin.products.create') }}">Tambah Product</a>
+    <a href="{{ route('admin.categories.create') }}">Tambah Category</a>
 
     @if(session('success'))
         <p style="color:green">{{ session('success') }}</p>
@@ -14,24 +14,22 @@
     <table border="1" cellpadding="10">
         <tr>
             <th>Nama</th>
-            <th>Kategori</th>
-            <th>Harga</th>
+            <th>Slug</th>
             <th>Aksi</th>
         </tr>
 
-        @foreach($products as $product)
+        @foreach($categories as $category)
             <tr>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->category?->name }}</td>
-                <td>{{ $product->price }}</td>
+                <td>{{ $category->name }}</td>
+                <td>{{ $category->slug }}</td>
                 <td>
-                    <a href="{{ route('admin.products.edit', $product) }}">Edit</a>
+                    <a href="{{ route('admin.categories.edit', $category) }}">Edit</a>
 
-                    <form action="{{ route('admin.products.destroy', $product) }}"
+                    <form action="{{ route('admin.categories.destroy', $category) }}"
                           method="POST" style="display:inline">
                         @csrf
                         @method('DELETE')
-                        <button onclick="return confirm('Hapus product?')">
+                        <button onclick="return confirm('Hapus category?')">
                             Hapus
                         </button>
                     </form>
