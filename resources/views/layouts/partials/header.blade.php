@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between h-16">
 
             {{-- Logo --}}
-            <a href="{{ route('/') }}" class="flex items-center gap-2">
+            <a href="{{ url('/') }}" class="flex items-center gap-2">
                 <span class="text-xl font-bold text-indigo-600">
                     E-Commerce
                 </span>
@@ -11,7 +11,7 @@
 
             {{-- Navigation (Desktop) --}}
             <nav class="hidden md:flex items-center gap-6">
-                <a href="{{ route('home') }}"
+                <a href="{{ url('/') }}"
                    class="text-gray-700 hover:text-indigo-600 font-medium transition">
                     Home
                 </a>
@@ -66,7 +66,7 @@
 
         {{-- Mobile Menu --}}
         <div id="mobileMenu" class="hidden md:hidden pb-4">
-            <a href="{{ route('home') }}"
+            <a href="{{ url('/') }}"
                class="block py-2 text-gray-700 hover:text-indigo-600">
                 Home
             </a>

@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CheckoutController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
 
 
