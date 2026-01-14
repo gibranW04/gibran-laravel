@@ -6,9 +6,10 @@
     {{-- ================= HEADER ================= --}}
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-900">
-                Produk Terbaru
+            <h1 style="color:red; font-size:40px">
+    TEST UI GIBRAN
             </h1>
+
             <p class="text-gray-500 mt-1">
                 Temukan produk terbaik sesuai kebutuhanmu
             </p>
