@@ -7,7 +7,7 @@
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
         <div>
             <h1 class="text-4xl font-bold text-red-600">
-                TEST UI GIBRAN Wicaksono
+                LIBRARY GIBRAN
             </h1>
 
             <p class="text-gray-500 mt-1">
