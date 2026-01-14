@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between h-16">
 
             {{-- Logo --}}
-            <a href="{{ route('home') }}" class="flex items-center gap-2">
+            <a href="{{ route('/') }}" class="flex items-center gap-2">
                 <span class="text-xl font-bold text-indigo-600">
                     E-Commerce
                 </span>
