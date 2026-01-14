@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL; // Wajib di-import untuk Force HTTPS
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,15 +21,21 @@ class AppServiceProvider extends ServiceProvider
     {
         /**
          * 1. Force HTTPS di Production (Railway)
-         * Ini memperbaiki tampilan CSS/JS yang hancur karena masalah Mixed Content.
+         * Ini memperbaiki masalah mixed content (CSS/JS tidak load).
          */
         if (config('app.env') === 'production') {
             URL::forceScheme('https');
         }
 
         /**
-         * 2. Konfigurasi Midtrans
-         * Pastikan key "midtrans" sudah terdaftar di config/services.php
+         * 2. Share Categories ke SEMUA VIEW (FIX ERROR)
+         * Ini MENGHILANGKAN:
+         * Undefined variable $categories
+         */
+        View::share('categories', Category::all());
+
+        /**
+         * 3. Konfigurasi Midtrans
          */
         \Midtrans\Config::$serverKey = config('services.midtrans.serverKey');
         \Midtrans\Config::$clientKey = config('services.midtrans.clientKey');
