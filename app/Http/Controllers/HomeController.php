@@ -33,10 +33,12 @@ class HomeController extends Controller
      */
     public function show($slug)
     {
+        $categories = Category::all(); // ⬅️ WAJIB
+
         $product = Product::with(['category', 'images', 'variants'])
             ->where('slug', $slug)
             ->firstOrFail();
 
-        return view('home.show', compact('product'));
+        return view('home.show', compact('product', 'categories'));
     }
 }
