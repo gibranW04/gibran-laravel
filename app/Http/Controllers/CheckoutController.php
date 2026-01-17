@@ -10,52 +10,55 @@ use Illuminate\Support\Facades\Auth;
 class CheckoutController extends Controller
 {
     /**
-     * CART / SHOW
+     * CART / SHOW (BOLEH TANPA LOGIN)
      */
-   public function index()
+    public function index()
     {
         $cart = session('cart', []);
-        // Ambil alamat milik user yang sedang login (baik admin/user biasa)
-        $addresses = Address::where('user_id', Auth::id())->get();
+
+        // Jika login → ambil address
+        // Jika guest → address kosong
+        $addresses = Auth::check()
+            ? Address::where('user_id', Auth::id())->get()
+            : collect();
 
         return view('cart.index', compact('cart', 'addresses'));
     }
 
-/**
- * ADD TO CART
- */
-public function addToCart(Request $request)
-{
-    // Validasi input
-    $request->validate([
-        'variant_id'   => 'required',
-        'product_name' => 'required',
-        'price'        => 'required|numeric',
-        'qty'          => 'required|integer|min:1',
-    ]);
+    /**
+     * ADD TO CART (GUEST / LOGIN)
+     */
+    public function addToCart(Request $request)
+    {
+        $request->validate([
+            'variant_id'   => 'required',
+            'product_name' => 'required',
+            'price'        => 'required|numeric',
+            'qty'          => 'required|integer|min:1',
+        ]);
 
-    $cart = session('cart', []);
+        $cart = session('cart', []);
 
-    // Jika produk sudah ada di cart, tambahkan qty nya saja
-    if (isset($cart[$request->variant_id])) {
-        $cart[$request->variant_id]['qty'] += $request->qty;
-    } else {
-        // Jika belum ada, masukkan data baru
-        $cart[$request->variant_id] = [
-            'variant_id'   => $request->variant_id,
-            'product_name' => $request->product_name,
-            'price'        => $request->price,
-            'qty'          => $request->qty,
-        ];
+        if (isset($cart[$request->variant_id])) {
+            $cart[$request->variant_id]['qty'] += $request->qty;
+        } else {
+            $cart[$request->variant_id] = [
+                'variant_id'   => $request->variant_id,
+                'product_name' => $request->product_name,
+                'price'        => $request->price,
+                'qty'          => $request->qty,
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()
+            ->route('cart.index')
+            ->with('success', 'Produk berhasil ditambahkan ke keranjang');
     }
 
-    session(['cart' => $cart]);
-
-    return redirect()->route('cart.index')->with('success', 'Produk berhasil ditambah ke keranjang!');
-}
-
     /**
-     * UPDATE QTY (+ / -)
+     * UPDATE QTY
      */
     public function updateQty(Request $request)
     {
@@ -65,8 +68,7 @@ public function addToCart(Request $request)
             $cart[$request->variant_id]['qty'] = max(1, $request->qty);
         }
 
-        session(['cart' => $cart]);
-
+        session()->put('cart', $cart);
         return back();
     }
 
@@ -78,16 +80,19 @@ public function addToCart(Request $request)
         $cart = session('cart', []);
         unset($cart[$variantId]);
 
-        session(['cart' => $cart]);
-
+        session()->put('cart', $cart);
         return back();
     }
 
     /**
-     * MIDTRANS CHECKOUT
+     * MIDTRANS CHECKOUT (WAJIB LOGIN)
      */
-public function store(Request $request)
+    public function store(Request $request)
     {
+        if (!Auth::check()) {
+            return response()->json(['error' => 'Silakan login untuk checkout'], 401);
+        }
+
         $cart = session('cart', []);
         if (empty($cart)) {
             return response()->json(['error' => 'Keranjang kosong'], 400);
@@ -100,7 +105,6 @@ public function store(Request $request)
         $address = Address::findOrFail($request->address_id);
         $total = collect($cart)->sum(fn ($i) => $i['price'] * $i['qty']);
 
-        // Parameter Midtrans
         $params = [
             'transaction_details' => [
                 'order_id' => 'ORDER-' . time() . '-' . Auth::id(),
@@ -119,8 +123,7 @@ public function store(Request $request)
                     'country_code' => 'IDN'
                 ],
             ],
-            // Item details (Opsional, agar muncul rincian di Midtrans)
-            'item_details' => collect($cart)->map(function($item) {
+            'item_details' => collect($cart)->map(function ($item) {
                 return [
                     'id' => $item['variant_id'],
                     'price' => (int) $item['price'],

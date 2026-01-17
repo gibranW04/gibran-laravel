@@ -55,7 +55,7 @@
 
                 @foreach ($products as $product)
                 <a href="{{ route('product.show', $product->slug) }}"
-                   class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+   class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
 
                     {{-- Image --}}
                     <div class="relative h-56 bg-gray-100 overflow-hidden">
@@ -73,15 +73,15 @@
 
                     {{-- Content --}}
                     <div class="p-5">
-                        <h3 class="text-lg font-semibold text-gray-800 line-clamp-2">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white line-clamp-2">
                             {{ $product->name }}
                         </h3>
 
-                        <p class="text-sm text-gray-500 mt-2">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
                             Mulai dari
                         </p>
 
-                        <p class="text-xl font-extrabold text-red-600 mt-1">
+                        <p class="text-xl font-extrabold text-red-600 dark:text-red-500 mt-1">
                             Rp {{ number_format($product->variants->min('price')) }}
                         </p>
 

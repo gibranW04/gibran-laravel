@@ -19,7 +19,7 @@
 
 </head>
 
-<body class="font-sans antialiased bg-gray-50 text-gray-800">
+<body class="font-sans antialiased bg-gray-50 text-gray-800 dark:bg-black dark:text-gray-100">
 
     {{-- Header (optional) --}}
     @include('layouts.partials.header')
