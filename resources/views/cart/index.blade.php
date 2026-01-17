@@ -71,13 +71,14 @@
                     @php
                         $routeAdd = auth()->user()->hasRole('admin')
                             ? route('admin.addresses.create')
-                            : route('user.addresses.create');
+                            : route('addresses.create');
                     @endphp
 
                     <a href="{{ $routeAdd }}"
-                       class="text-xs font-bold text-indigo-600 hover:text-indigo-800 underline">
-                        + Tambah Alamat Baru
+                    class="text-xs font-bold text-indigo-600 hover:text-indigo-800">
+                    + Tambah Alamat Baru
                     </a>
+
                 </div>
             </div>
 
