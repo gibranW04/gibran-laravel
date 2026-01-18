@@ -10,8 +10,8 @@
                 MANCHESTER UNITED STORE
             </h1>
             <p class="mt-3 text-lg text-red-100 max-w-xl">
-                Official merchandise & apparel Manchester United.
-                Glory Glory Man United!
+                Official merchandise & apparel Manchester United. Biasakan pakai KING.
+                Glory Glory Man United!!!
             </p>
         </div>
 
