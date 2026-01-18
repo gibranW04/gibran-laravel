@@ -21,7 +21,8 @@ class ProductSeeder extends Seeder
             'slug' => 'mu-home-jersey-2024',
             'category_id' => $jersey->id,
             'description' => 'Jersey kandang resmi Manchester United musim 2024.',
-        ]);
+            'image' => 'images/products/mu-jersey.jpg',
+]);
 
         ProductVariant::create([
             'product_id' => $p1->id,
@@ -31,11 +32,13 @@ class ProductSeeder extends Seeder
 
         // 👟 Sepatu
         $p2 = Product::create([
-            'name' => 'Adidas Predator Manchester United',
-            'slug' => 'adidas-predator-mu',
-            'category_id' => $sepatu->id,
-            'description' => 'Sepatu bola Adidas Predator edisi Manchester United.',
-        ]);
+    'name' => 'Adidas Predator Manchester United',
+    'slug' => 'adidas-predator-mu',
+    'category_id' => $sepatu->id,
+    'description' => 'Sepatu bola Adidas Predator edisi Manchester United.',
+    'image' => 'images/products/mu-shoes.jpg',
+]);
+
 
         ProductVariant::create([
             'product_id' => $p2->id,
@@ -44,12 +47,14 @@ class ProductSeeder extends Seeder
         ]);
 
         // 🧥 Jaket
-        $p3 = Product::create([
-            'name' => 'MU Anthem Jacket',
-            'slug' => 'mu-anthem-jacket',
-            'category_id' => $jaket->id,
-            'description' => 'Jaket anthem resmi Manchester United.',
-        ]);
+       $p3 = Product::create([
+    'name' => 'MU Anthem Jacket',
+    'slug' => 'mu-anthem-jacket',
+    'category_id' => $jaket->id,
+    'description' => 'Jaket anthem resmi Manchester United.',
+    'image' => 'images/products/mu-jacket.jpg',
+]);
+
 
         ProductVariant::create([
             'product_id' => $p3->id,

@@ -58,12 +58,10 @@
    class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
 
                     {{-- Image --}}
-                    <div class="relative h-56 bg-gray-100 overflow-hidden">
-                        <img
-                            src="{{ asset('storage/' . ($product->images->first()->image ?? '')) }}"
-                            alt="{{ $product->name }}"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                        >
+                    <img
+                        src="{{ asset($product->image ?? 'images/no-image.png') }}"
+                        alt="{{ $product->name }}"
+                        class="w-full h-56 object-cover rounded-lg mb-3">
 
                         {{-- Category Badge --}}
                         <span class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full">
