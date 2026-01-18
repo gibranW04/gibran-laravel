@@ -7,27 +7,35 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
         {{-- ================= IMAGE GALLERY ================= --}}
-        <div>
-            <div class="border rounded-xl overflow-hidden shadow-sm bg-white">
-                <img
-                    id="mainImage"
-                    src="{{ asset('storage/' . ($product->images->first()->image ?? '')) }}"
-                    alt="{{ $product->name }}"
-                    class="w-full h-96 object-contain"
-                >
-            </div>
+        {{-- ================= IMAGE GALLERY ================= --}}
+<div>
+    <div class="border rounded-xl overflow-hidden shadow-sm bg-white flex items-center justify-center p-6">
+        <img
+            id="mainImage"
+            src="{{ $product->image
+                ? asset($product->image)
+                : ($product->images->first()
+                    ? asset($product->images->first()->image)
+                    : asset('images/no-image.png')) }}"
+            alt="{{ $product->name }}"
+            class="max-h-[420px] object-contain"
+        >
+    </div>
 
-            <div class="flex gap-3 mt-4 overflow-x-auto pb-2">
-                @foreach ($product->images as $image)
-                    <img
-                        src="{{ asset('storage/'.$image->image) }}"
-                        onclick="document.getElementById('mainImage').src = this.src"
-                        class="w-20 h-20 object-cover rounded-lg border hover:border-indigo-500 cursor-pointer transition flex-shrink-0"
-                        alt="{{ $product->name }}"
-                    >
-                @endforeach
-            </div>
+    @if ($product->images->count())
+        <div class="flex gap-3 mt-4 overflow-x-auto pb-2">
+            @foreach ($product->images as $image)
+                <img
+                    src="{{ asset($image->image) }}"
+                    onclick="document.getElementById('mainImage').src = this.src"
+                    class="w-20 h-20 object-cover rounded-lg border hover:border-red-600 cursor-pointer transition flex-shrink-0"
+                    alt="{{ $product->name }}"
+                >
+            @endforeach
         </div>
+    @endif
+</div>
+
 
         {{-- ================= PRODUCT INFO ================= --}}
         <div>
