@@ -54,46 +54,48 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
                 @forelse ($products as $product)
-                <a href="{{ route('product.show', $product->slug) }}"
-   class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+                    <a href="{{ route('product.show', $product->slug) }}"
+                        class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
 
-                    {{-- Image --}}
-                    <img
+    {{-- IMAGE WRAPPER --}}
+             <div class="relative h-56 bg-gray-100 flex items-center justify-center">
+             <img
             src="{{ $product->image
                 ? asset($product->image)
                 : asset('images/no-image.png') }}"
-           class="w-full h-56 object-cover rounded-xl mb-4"
-           alt="{{ $product->name }}">
+            class="h-full object-contain transition-transform group-hover:scale-105"
+            alt="{{ $product->name }}">
 
+        {{-- CATEGORY BADGE --}}
+        <span class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full">
+            {{ $product->category->name ?? 'MU' }}
+        </span>
+    </div>
 
-                        {{-- Category Badge --}}
-                        <span class="absolute top-3 left-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full">
-                            {{ $product->category->name ?? 'MU' }}
-                        </span>
-                    </div>
+    {{-- CONTENT --}}
+    <div class="p-5">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white line-clamp-2">
+            {{ $product->name }}
+        </h3>
 
-                    {{-- Content --}}
-                    <div class="p-5">
-                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white line-clamp-2">
-                            {{ $product->name }}
-                        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+            Mulai dari
+        </p>
 
-                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                            Mulai dari
-                        </p>
+        <p class="text-xl font-extrabold text-red-600 dark:text-red-500 mt-1">
+            Rp {{ number_format($product->variants->min('price')) }}
+        </p>
 
-                        <p class="text-xl font-extrabold text-red-600 dark:text-red-500 mt-1">
-                            Rp {{ number_format($product->variants->min('price')) }}
-                        </p>
+        <div class="mt-4">
+            <span class="inline-block text-sm font-medium text-white bg-black px-4 py-2 rounded-lg">
+                Lihat Produk
+            </span>
+        </div>
+    </div>
+</a>
+@empty
+@endforelse
 
-                        <div class="mt-4">
-                            <span class="inline-block text-sm font-medium text-white bg-black px-4 py-2 rounded-lg">
-                                Lihat Produk
-                            </span>
-                        </div>
-                    </div>
-                </a>
-                @endforeach
 
             </div>
         @else
