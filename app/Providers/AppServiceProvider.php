@@ -14,33 +14,23 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        /**
-         * 1. Force HTTPS di Production (Railway)
-         * Ini memperbaiki masalah mixed content (CSS/JS tidak load).
-         */
+        // Force HTTPS di Railway
         if (config('app.env') === 'production') {
             URL::forceScheme('https');
         }
 
-        /**
-         * 2. Share Categories ke SEMUA VIEW (FIX ERROR)
-         * Ini MENGHILANGKAN:
-         * Undefined variable $categories
-         */
-        View::share('categories', Category::all());
+        // ⚠️ JANGAN QUERY DB DI SINI
+    }
 
-        /**
-         * 3. Konfigurasi Midtrans
-         */
-        \Midtrans\Config::$serverKey = config('services.midtrans.serverKey');
-        \Midtrans\Config::$clientKey = config('services.midtrans.clientKey');
-        \Midtrans\Config::$isProduction = config('services.midtrans.isProduction');
-        \Midtrans\Config::$isSanitized = config('services.midtrans.isSanitized');
-        \Midtrans\Config::$is3ds = config('services.midtrans.is3ds');
+    /**
+     * Dipanggil SETELAH app benar-benar siap
+     */
+    public function booted(): void
+    {
+        View::composer('*', function ($view) {
+            $view->with('categories', Category::all());
+        });
     }
 }
