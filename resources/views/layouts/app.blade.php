@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title', 'E-Commerce')</title>
+    <title>@yield('title', 'Manchester United Store')</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -28,15 +28,15 @@
 
 <body class="font-sans antialiased bg-gray-50 text-gray-800 dark:text-gray-100">
 
-    {{-- Header (optional) --}}
+    {{-- Header --}}
     @include('layouts.partials.header')
 
     <main class="min-h-screen dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-900 dark:to-black">
         @yield('content')
     </main>
 
-    {{-- Footer (optional) --}}
-    {{-- @include('layouts.partials.footer') --}}
+    {{-- Footer --}}
+    @include('layouts.partials.footer')
 
 </body>
 </html>

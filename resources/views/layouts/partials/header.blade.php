@@ -7,7 +7,7 @@
                <img src="/images/mu-logo.png" class="h-10">
 
                 <span class="text-lg font-extrabold tracking-wide text-white hidden sm:block">
-                    MAN UNITED STORE
+                    MANCHESTER UNITED
                 </span>
             </a>
 
