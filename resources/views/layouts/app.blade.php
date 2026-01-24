@@ -17,14 +17,21 @@
 <script src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
 
+<style>
+    /* Dark mode gradient blue-black */
+    .dark {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f0f0f 100%);
+    }
+</style>
+
 </head>
 
-<body class="font-sans antialiased bg-gray-50 text-gray-800 dark:bg-black dark:text-gray-100">
+<body class="font-sans antialiased bg-gray-50 text-gray-800 dark:text-gray-100">
 
     {{-- Header (optional) --}}
     @include('layouts.partials.header')
 
-    <main class="min-h-screen">
+    <main class="min-h-screen dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-900 dark:to-black">
         @yield('content')
     </main>
 

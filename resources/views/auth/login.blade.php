@@ -2,71 +2,178 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login - Manchester United Store</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: Arial, sans-serif;
-            background: #f1f2f6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #b91c1c 0%, #1f2937 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
         }
         .card {
-            width: 350px;
-            margin: 100px auto;
             background: white;
-            padding: 30px;
-            border-radius: 8px;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-top: 4px solid #b91c1c;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo h1 {
+            color: #b91c1c;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .logo p {
+            color: #6b7280;
+            font-size: 14px;
+            letter-spacing: 1px;
         }
         h2 {
             text-align: center;
-            margin-bottom: 20px;
+            color: #1f2937;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            color: #374151;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
         input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: #b91c1c;
+            box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.1);
         }
         button {
             width: 100%;
-            padding: 10px;
-            background: #2f3640;
+            padding: 12px;
+            background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(185, 28, 28, 0.3);
+        }
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
         }
         a {
-            display: block;
-            margin-top: 15px;
-            text-align: center;
-            font-size: 14px;
+            color: #b91c1c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #7f1d1d;
+            text-decoration: underline;
         }
         .error {
-            color: red;
+            background: #fee;
+            color: #b91c1c;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #b91c1c;
             font-size: 14px;
-            margin-bottom: 10px;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+        }
+        .register-link a {
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>Login</h2>
-
-    @if ($errors->any())
-        <div class="error">
-            {{ $errors->first() }}
+<div class="container">
+    <div class="card">
+        <div class="logo">
+            <h1>⚽ MU STORE</h1>
+            <p>MANCHESTER UNITED</p>
         </div>
-    @endif
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+        <h2>Login</h2>
+        <p class="subtitle">Masuk ke akun Anda</p>
 
-        <input type="email" name="email" placeholder="Email" required autofocus>
-        <input type="password" name="password" placeholder="Password" required>
+        @if ($errors->any())
+            <div class="error">
+                {{ $errors->first() }}
+            </div>
+        @endif
 
-        <button type="submit">Login</button>
-    </form>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-    <a href="{{ route('register') }}">Belum punya akun? Register</a>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required>
+            </div>
+
+            <button type="submit">Masuk</button>
+        </form>
+
+        <div class="links">
+            <a href="#">Lupa Password?</a>
+        </div>
+
+        <div class="register-link">
+            Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a>
+        </div>
+    </div>
 </div>
 
 </body>

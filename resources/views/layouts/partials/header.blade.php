@@ -14,26 +14,26 @@
             {{-- NAVIGATION (DESKTOP) --}}
             <nav class="hidden md:flex items-center gap-8">
                 <a href="{{ url('/') }}"
-                   class="font-medium transition hover:text-red-500">
+                   class="font-medium text-white transition hover:text-red-500">
                     Home
                 </a>
                 <a href="#"
-                   class="font-medium transition hover:text-red-500">
+                   class="font-medium text-white transition hover:text-red-500">
                     Jersey
                 </a>
                 <a href="#"
-                   class="font-medium transition hover:text-red-500">
+                   class="font-medium text-white transition hover:text-red-500">
                     Apparel
                 </a>
                 <a href="#"
-                   class="font-medium transition hover:text-red-500">
+                   class="font-medium text-white transition hover:text-red-500">
                     Accessories
                 </a>
             </nav>
 
             {{-- RIGHT SECTION --}}
            <div class="flex items-center gap-5">
-            <button id="themeToggle" class="hover:text-red-500">🌙</button>
+            <button id="themeToggle" class="text-white hover:text-red-500">🌙</button>
             {{-- cart --}}
             </div>
 
@@ -68,7 +68,7 @@
             </a>
 
                 {{-- MOBILE MENU BUTTON --}}
-                <button class="md:hidden focus:outline-none"
+                <button class="md:hidden focus:outline-none text-white"
                         onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          class="h-6 w-6"
