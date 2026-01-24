@@ -22,6 +22,10 @@ class CategorySeeder extends Seeder
                 'name' => 'Jaket',
                 'slug' => 'jaket',
             ],
+            [
+                'name' => 'Accessories',
+                'slug' => 'accessories',
+            ],
         ]);
     }
 }
