@@ -36,8 +36,8 @@
             {{-- Contact & Social --}}
             <div>
                 <h4 class="text-white font-bold mb-4">Kontak</h4>
-                <p class="text-sm text-gray-400 mb-2">📞 +62 812-3456-7890</p>
-                <p class="text-sm text-gray-400 mb-4">📧 info@mustored.com</p>
+                <p class="text-sm text-gray-400 mb-2">📞 +62 895-0239-6187</p>
+                <p class="text-sm text-gray-400 mb-4">📧 info@gbrnwcksno</p>
                 <div class="flex gap-3">
                     <a href="#" class="text-gray-400 hover:text-red-500 transition text-lg">f</a>
                     <a href="#" class="text-gray-400 hover:text-red-500 transition text-lg">𝕏</a>
