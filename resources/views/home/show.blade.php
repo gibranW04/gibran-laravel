@@ -21,19 +21,6 @@
                         class="max-h-[420px] object-contain"
                     >
                 </div>
-
-                @if ($product->images->count())
-                    <div class="flex gap-3 mt-4 overflow-x-auto pb-2">
-                        @foreach ($product->images as $image)
-                            <img
-                                src="{{ asset($image->image) }}"
-                                onclick="document.getElementById('mainImage').src = this.src"
-                                class="w-20 h-20 object-cover rounded-lg border-2 border-gray-300 hover:border-red-600 dark:border-gray-700 dark:hover:border-blue-500 cursor-pointer transition flex-shrink-0"
-                                alt="{{ $product->name }}"
-                            >
-                        @endforeach
-                    </div>
-                @endif
             </div>
 
             {{-- ================= PRODUCT INFO ================= --}}
