@@ -14,6 +14,11 @@ class LoginResponse implements LoginResponseContract
             return redirect('/admin/dashboard');
         }
 
-        return redirect('/user/dashboard');
+        if ($user->hasRole('member')) {
+            return redirect('/dashboard');
+        }
+
+        // Fallback jika user tidak punya role
+        return redirect('/');
     }
 }
