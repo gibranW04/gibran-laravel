@@ -72,7 +72,7 @@ Route::middleware(['auth', 'role:admin'])
 | USER
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth', 'role:user'])->group(function () {
+Route::middleware(['auth', 'role:member'])->group(function () {
     Route::get('/dashboard', fn () => view('user.dashboard'))->name('dashboard');
     Route::get('/user/dashboard', fn () => view('user.dashboard'));
     Route::resource('addresses', UserAddressController::class);

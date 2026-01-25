@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('rafi1702'),
         ]);
 
-        $role = Role::find(1);
+        $role = Role::find(2); // member role
         $user->assignRole($role);
     }
 }
